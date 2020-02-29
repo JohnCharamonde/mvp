@@ -1,0 +1,44 @@
+{
+  "name": "hrr43-mvp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "start:dev": "nodemon server/index.js",
+    "build": "npx webpack",
+    "build:dev": "npx webpack --watch"
+  },
+  "nodemonConfig": {
+    "watch": "server/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnCharamonde/hrr43-mvp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnCharamonde/hrr43-mvp/issues"
+  },
+  "homepage": "https://github.com/JohnCharamonde/hrr43-mvp#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "nodemon": "^2.0.2",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.2",
+    "morgan": "^1.9.1",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  }
+}
