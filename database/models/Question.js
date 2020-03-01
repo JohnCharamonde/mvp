@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
 
-const questionSchema = new mongoose.Schema({
+const questionSchema = mongoose.Schema({
   question: String,
   answer: String,
-  deck: Number,
-  starred: Boolean,
+  deck: String,
+  star: Boolean,
 });
 
-const Question = mongoose.model('Question', attendeeSchema);
-
-module.exports = Question;
+module.exports = questionSchema;

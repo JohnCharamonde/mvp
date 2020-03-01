@@ -1,17 +1,14 @@
 const mongoose = require('mongoose');
+const questionSchema = require('./models/Question.js');
 
 const mongoURI = 'mongodb://localhost/questions';
+mongoose.Promise = global.Promise;
 
 const db = mongoose.createConnection(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-db
-  .then(db => console.log(`Connected to: ${mongoURI}`))
-  .catch(err => {
-    console.log(`There was a problem connecting to mongo at: ${mongoURI}`);
-    console.log(err);
-  });
+const Question = db.model('Question', questionSchema);
 
-module.exports = db;
+module.exports = Question;
