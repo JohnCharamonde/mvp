@@ -7,12 +7,11 @@ app.use('/', express.static('./public'));
 
 const PORT = 8000;
 
-// QUESTIONS CRUD
 // Create
 app.post('/api/questions', (req, res) => {
-  databaseControllers.insertQuestion(req.body, (error, result) => {
+  databaseControllers.createQuestion(req.body, (error, result) => {
     if (error) {
-      console.log('ERROR! Unable to insert question to database!', error);
+      console.log('ERROR! Unable to insert the question into the database!', error);
       res.sendStatus(404);
     } else {
       res.sendStatus(201);
@@ -21,55 +20,41 @@ app.post('/api/questions', (req, res) => {
 });
 
 // Read
-// app.get('/api/questions', (req, res) => {
-//   getQuestions(req)
-//   .then((data)=>{
-//     res.json(data)
-//   })
-//   .catch(
-//     res.sendStatus(404)
-//   );
-// })
-
-// Update
-// app.put('/api/questions/:questionId', (req, res) => {
-//   updateQuestion(req)
-//   .then(()=>{
-//     res.sendStatus(200)
-//   })
-//   .catch(()=>{
-//     res.sendStatus(404)
-//   });
-// })
-
-app.put('/api/questions', (req, res) => {
-  databaseControllers.insertQuestion(req.body, (error, result) => {
+app.get('/api/questions', (req, res) => {
+  databaseControllers.readQuestions((error, result) => {
     if (error) {
-      console.log('ERROR! Unable to insert question to database!', error);
+      console.log('ERROR! Unable to update the question!', error);
       res.sendStatus(404);
     } else {
-      res.sendStatus(201);
+      res.status(200).json(result);
+    }
+  })
+});
+
+// Update
+app.put('/api/questions', (req, res) => {
+  databaseControllers.updateQuestion(req.body._id, req.body.questionObj, (error, result) => {
+    if (error) {
+      console.log('ERROR! Unable to update the question!', error);
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(200);
     }
   })
 });
 
 // Delete
-// app.delete('/api/questions/:questionId', (req, res) => {
-//   deleteQuestion(req)
-//   .then(()=>{
-//     res.sendStatus(200)
-//   })
-//   .catch(()=>{
-//     res.sendStatus(404)
-//   });
-// })
-
-// USERS CRUD
-
-// ORGANIZATIONS CRUD
-
-// DECKS CRUD
+app.delete('/api/questions', (req, res) => {
+  databaseControllers.deleteQuestion(req.body._id, (error, result) => {
+    if (error) {
+      console.log('ERROR! Unable to delete the question from the database!', error);
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(200);
+    }
+  })
+});
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
-})
+});
