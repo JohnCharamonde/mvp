@@ -23,15 +23,15 @@ const readQuestions = (callback) => {
   Question.find((error, questions) => {
     if (error) {
       callback(error);
-    } else (
+    } else {
       callback(null, questions);
-    )
+    }
   });
 }
 
 // Update
-const updateQuestion = (question_id, questionObj, callback) => {
-  Question.updateOne({ _id: question_id }, questionObj, (error, question) => {
+const updateQuestion = (questionId, questionObj, callback) => {
+  Question.updateOne({ _id: questionId }, questionObj, (error, question) => {
     if(error) {
       callback(error);
     } else {
@@ -41,12 +41,12 @@ const updateQuestion = (question_id, questionObj, callback) => {
 }
 
 // Delete
-const deleteQuestion = (question_id, callback) => {
-  Question.delete({ _id: question_id }, (error, question) => {
+const deleteQuestion = (questionId, callback) => {
+  Question.deleteOne({ _id: questionId }, (error, question) => {
     if(error) {
       callback(error);
     } else {
-      callback(null, question);
+      callback(null, question)
     }
   });
 }
