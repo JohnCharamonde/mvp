@@ -1,12 +1,12 @@
 const Question = require('../index.js');
 
 // Create
-const createQuestion = (questionObj, callback) => {
+const createQuestion = (question, answer, deck, star, callback) => {
   let newQuestion = new Question({
-    question: QuestionObj.question,
-    answer: questionObj.answer,
-    deck: questionObj.answer,
-    star: false
+    question: question,
+    answer: answer,
+    deck: deck,
+    star: star
   });
 
   newQuestion.save((error, question) => {

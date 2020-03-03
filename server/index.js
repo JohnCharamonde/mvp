@@ -3,13 +3,13 @@ const databaseControllers = require('../database/controllers/question.js');
 const app = express();
 
 app.use(express.json());
-app.use('/', express.static('./public'));
+app.use('/', express.static('./client/dist'));
 
 const PORT = 8000;
 
 // Create
 app.post('/api/questions', (req, res) => {
-  databaseControllers.createQuestion(req.body, (error, result) => {
+  databaseControllers.createQuestion(req.body.question, req.body.answer, req.body.deck, req.body.star, (error, result) => {
     if (error) {
       console.log('ERROR! Unable to insert the question into the database!', error);
       res.sendStatus(404);
